@@ -26,3 +26,46 @@ Todos os usuários do sistema têm senhas que são utilizadas para validação d
 - **Autenticação:** .....
 
 ## Historias de Usuarios
+
+História 1
+
+Como secretário, eu quero cadastrar e atualizar informações sobre cursos e disciplinas no sistema para garantir que esteja sempre atualizado e disponível para os alunos.
+
+História 2
+
+Como secretário, eu quero registrar novos professores no sistema e associá-los às disciplinas para que eles possam ser alocados adequadamente e os alunos possam saber quem leciona cada matéria. 
+
+História 3
+
+Como aluno, eu quero me matricular em até 4 disciplinas obrigatórias e 2 optativas para atender aos requisitos do curso.
+
+História 4
+
+Como aluno, eu quero poder cancelar a matrícula em uma disciplina para alterar minha escolha de disciplinas antes do término do período de matrícula.
+
+História 5
+
+Como aluno, eu quero visualizar quais disciplinas estão ativas e disponíveis, bem como as que foram canceladas e as que faltam, para ajustar minha matrícula e escolher as melhores opções.
+
+História 6
+
+Como professor, eu quero acessar a lista de alunos matriculados em minhas disciplinas para saber quem está inscrito na matéria.
+
+História 7
+
+Como secretário, eu quero definir e gerenciar os períodos de matrícula para controlar quando os alunos podem se matricular ou cancelar disciplinas, garantindo um processo organizado.
+
+História 8
+Como usuário quero poder recuperar e alterar minha senha para garantir que eu possa acessar minha conta se esquecer minha senha ou desejar alterá-la.
+
+HIstória 9
+
+Como aluno, eu quero receber notificações sobre o status de minha matrícula e quaisquer atualizações importantes relacionadas ao processo.
+
+HIstória 10
+
+Como professor, eu quero que exiba para os alunos minhas informações de contato no sistema para garantir que eles possam me alcançar facilmente e eu possa manter uma comunicação eficaz.
+
+História 11
+
+Como professor, eu quero ser notificado sobre quaisquer mudanças ou atualizações nas disciplinas que eu ministro para que eu possa ajustar meus planos de aula e preparar a abordagem educacional de acordo.
