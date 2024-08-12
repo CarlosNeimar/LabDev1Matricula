@@ -69,3 +69,9 @@ Como professor, eu quero que exiba para os alunos minhas informações de contat
 ### História 11
 
 Como professor, eu quero ser notificado sobre quaisquer mudanças ou atualizações nas disciplinas que eu ministro para que eu possa ajustar meus planos de aula e preparar a abordagem educacional de acordo.
+
+----
+
+## Diagramas
+
+![Caso de uso](Docs/Diagramas/Casodeuso/Casosdeuso.jpg)
