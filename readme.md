@@ -74,4 +74,4 @@ Como professor, eu quero ser notificado sobre quaisquer mudanças ou atualizaç�
 
 ## Diagramas
 
-![Caso de uso](Docs/Diagramas/Casodeuso/Casosdeuso.jpg)
+![Caso de uso](Docs/Diagramas/Casodeuso/Casodeuso.jpg)
