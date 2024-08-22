@@ -1,4 +1,7 @@
-package back;
+package back.universidade;
+
+import back.usuarios.Aluno;
+import back.usuarios.Professor;
 
 public class Disciplina {
   private String nome;

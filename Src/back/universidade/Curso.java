@@ -1,4 +1,4 @@
-package back;
+package back.universidade;
 
 public class Curso {
   private String nome;

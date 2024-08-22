@@ -1,4 +1,4 @@
-package back;
+package back.sistema;
 
 public class Endereco {
   private String rua;

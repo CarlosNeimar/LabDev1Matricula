@@ -1,4 +1,4 @@
-package back;
+package back.usuarios;
 
 public class Secretaria {
   private String nome;

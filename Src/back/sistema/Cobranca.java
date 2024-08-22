@@ -1,9 +1,9 @@
-package back;
+package back.sistema;
 import java.util.Objects;
 
 public class Cobranca {
   private String nome;
-  private int []Cobranca;
+  private int[] Cobranca;
 
   public Cobranca() {
   }

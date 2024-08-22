@@ -1,5 +1,7 @@
-package back;
+package back.usuarios;
 import java.util.Objects;
+
+import back.universidade.Disciplina;
 
 public class Professor {
   private String nome;
