@@ -1,23 +1,27 @@
 package back.usuarios;
+import java.io.Serializable;
 import java.util.Objects;
 
 import back.universidade.Disciplina;
 
-public class Professor {
+public class Professor implements Serializable {
   private String nome;
   private int registro;
   private String senha;
-  private Disciplina []listadisciplina;
-
+  private Disciplina[] listadisciplina;
+  private String pergunta;
+  private String resposta;
 
   public Professor() {
   }
 
-  public Professor(String nome, int registro, String senha, Disciplina[] listadisciplina) {
+  public Professor(String nome, int registro, String senha, Disciplina[] listadisciplina, String pergunta, String resposta) {
     this.nome = nome;
     this.registro = registro;
     this.senha = senha;
     this.listadisciplina = listadisciplina;
+    this.pergunta = pergunta;
+    this.resposta = resposta;
   }
 
   public String getNome() {
@@ -38,6 +42,22 @@ public class Professor {
 
   public String getSenha() {
     return this.senha;
+  }
+
+  public String getPergunta() {
+    return this.pergunta;
+  }
+
+  public void setPergunta(String pergunta) {
+    this.pergunta = pergunta;
+  }
+
+  public void setResposta(String resposta) {
+    this.resposta = resposta;
+  }
+
+  public String getResposta() {
+    return this.resposta;
   }
 
   public void setSenha(String senha) {
