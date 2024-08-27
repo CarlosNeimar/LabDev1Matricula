@@ -342,8 +342,52 @@ public class Main {
   }
 
   private static void alunosystem(Aluno aluno) {
-    System.out.println("----Tela do Aluno----");
+    Scanner scan = new Scanner(System.in);
+    boolean sair = false;
 
+    while (!sair) {
+        System.out.println("----Tela do Aluno----");
+        System.out.println("Menu de opções:");
+        System.out.println("1 - Ver Disciplinas");
+        System.out.println("2 - Matricular em Disciplina");
+        System.out.println("3 - Cancelar Matrícula em Disciplina");
+        System.out.println("4 - Sair");
+
+        int opcao = scan.nextInt();
+        scan.nextLine(); // Consumir quebra de linha
+
+        switch (opcao) {
+            case 1:
+                aluno.verDisciplinas();
+                break;
+            case 2:
+                System.out.println("Digite o código da disciplina para matricular:");
+                int codigoMatricula = scan.nextInt();
+                scan.nextLine(); // Consumir quebra de linha
+                Disciplina disciplinaMatricula = recuperarDisciplinaPorCodigo(codigoMatricula);
+                aluno.matricularDisciplina(disciplinaMatricula);
+                break;
+            case 3:
+                System.out.println("Digite o código da disciplina para cancelar a matrícula:");
+                int codigoCancelamento = scan.nextInt();
+                scan.nextLine(); // Consumir quebra de linha
+                aluno.cancelarMatricula(codigoCancelamento);
+                break;
+            case 4:
+                sair = true;
+                System.out.println("Saindo do sistema...");
+                break;
+            default:
+                System.out.println("Opção inválida. Tente novamente.");
+                break;
+        }
+    }
+}
+
+  private static Disciplina recuperarDisciplinaPorCodigo(int codigoMatricula) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'recuperarDisciplinaPorCodigo'");
   }
+
 
 }
