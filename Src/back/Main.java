@@ -344,7 +344,6 @@ public class Main {
   private static void alunosystem(Aluno aluno) {
     Scanner scan = new Scanner(System.in);
     boolean sair = false;
-    UsuarioRepository usuarioRepository = new UsuarioRepository(); // Instância para acessar o repositório
 
     while (!sair) {
         System.out.println("----Tela do Aluno----");
@@ -385,7 +384,19 @@ public class Main {
                     }
 
                     if (disciplinaMatricula != null) {
+                        // Adicionar disciplina à lista de disciplinas do aluno
                         aluno.matricularDisciplina(disciplinaMatricula);
+                        
+                        // Atualizar o aluno no repositório
+                        List<Aluno> alunos = usuarioRepository.carregarAlunos();
+                        for (int i = 0; i < alunos.size(); i++) {
+                            if (alunos.get(i).getMatricula() == aluno.getMatricula()) {
+                                alunos.set(i, aluno);
+                                break;
+                            }
+                        }
+                        usuarioRepository.salvarAlunos(alunos);
+
                         System.out.println("Matrícula realizada com sucesso na disciplina: " + disciplinaMatricula.getNome());
                     } else {
                         System.out.println("Código da disciplina não encontrado.");
@@ -397,6 +408,18 @@ public class Main {
                 int codigoCancelamento = scan.nextInt();
                 scan.nextLine(); // Consumir quebra de linha
                 aluno.cancelarMatricula(codigoCancelamento);
+
+                // Atualizar o aluno no repositório
+                List<Aluno> alunos = usuarioRepository.carregarAlunos();
+                for (int i = 0; i < alunos.size(); i++) {
+                    if (alunos.get(i).getMatricula() == aluno.getMatricula()) {
+                        alunos.set(i, aluno);
+                        break;
+                    }
+                }
+                usuarioRepository.salvarAlunos(alunos);
+
+                System.out.println("Matrícula cancelada com sucesso.");
                 break;
             case 4:
                 sair = true;
@@ -408,6 +431,7 @@ public class Main {
         }
     }
 }
+
 
 
   private static Disciplina recuperarDisciplinaPorCodigo(int codigoMatricula) {

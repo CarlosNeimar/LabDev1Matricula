@@ -125,6 +125,7 @@ public class Aluno implements Serializable {
         novasDisciplinas[novasDisciplinas.length - 1] = disciplina;
         setListaDisciplinas(novasDisciplinas);
         System.out.println("Matricula realizada com sucesso na disciplina " + disciplina.getNome());
+        
     }
 
     // Método para cancelar a matrícula em uma disciplina
