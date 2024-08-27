@@ -324,7 +324,7 @@ public class Main {
         break;
 
       case 4:
-
+        secretaria.atualizaraluno();
         break;
 
       case 5:

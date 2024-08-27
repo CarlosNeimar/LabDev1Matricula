@@ -16,6 +16,7 @@ public class Secretaria implements Serializable {
   private int cod;
   private String pergunta;
   private String resposta;
+
   // Construtor
   public Secretaria(String nome, int cod, String senha, String pergunta, String resposta) {
     this.nome = nome;
@@ -28,7 +29,7 @@ public class Secretaria implements Serializable {
   // Get e Set
   public String getNome() {
     return nome;
-  } 
+  }
 
   public void setNome(String nome) {
     this.nome = nome;
@@ -49,7 +50,7 @@ public class Secretaria implements Serializable {
   public String getResposta() {
     return this.resposta;
   }
-  
+
   public int getCod() {
     return cod;
   }
@@ -57,7 +58,7 @@ public class Secretaria implements Serializable {
   public void setCod(int cod) {
     this.cod = cod;
   }
-  
+
   public String getSenha() {
     return senha;
   }
@@ -65,8 +66,9 @@ public class Secretaria implements Serializable {
   public void setSenha(String senha) {
     this.senha = senha;
   }
+
   // Métods
-  public void gerarCurriculo(){
+  public void gerarCurriculo() {
     System.out.println("Quantas disciplinas deseja adicionar ao currículo?");
     Scanner scan = new Scanner(System.in);
     int numDisciplinas = scan.nextInt();
@@ -91,7 +93,7 @@ public class Secretaria implements Serializable {
     usuarioRepository.salvardispl(disciplinas);
   }
 
-  public void consultaralunos(){
+  public void consultaralunos() {
     System.out.println("Digite o nome do aluno:");
     Scanner scan = new Scanner(System.in);
     String nome = scan.next();
@@ -105,4 +107,72 @@ public class Secretaria implements Serializable {
       }
     }
   }
-} 
+
+  public void atualizaraluno() {
+    System.out.println("Digite o nome do aluno:");
+    Scanner scan = new Scanner(System.in);
+    String nome = scan.next();
+    List<Aluno> alunos = usuarioRepository.carregarAlunos();
+    for (Aluno aluno : alunos) {
+      if (aluno.getNome().equals(nome)) {
+        System.out.println("Aluno: " + aluno.getNome() + " Encontrado");
+        boolean sair = false;
+        while (!sair) {
+          System.out.println("Digite o que deseja atualizar:");
+          System.out.println("1 - Nome");
+          System.out.println("2 - Matrícula");
+          System.out.println("3 - Senha");
+          System.out.println("4 - Pergunta de segurança");
+          System.out.println("5 - Resposta de segurança");
+          System.out.println("6 - Sair");
+          int opcao = scan.nextInt();
+          if (opcao == 6) {
+            sair = true;
+            break;
+          }
+          switch (opcao) {
+            case 1:
+              System.out.println("Digite o novo nome do aluno:");
+              String novoNome = scan.next();
+              aluno.setNome(novoNome);
+              usuarioRepository.salvarAlunos(alunos);
+              break;
+
+            case 2:
+              System.out.println("Digite a nova matrícula do aluno:");
+              int novaMatricula = scan.nextInt();
+              aluno.setMatricula(novaMatricula);
+              usuarioRepository.salvarAlunos(alunos);
+              break;
+
+            case 3:
+              System.out.println("Digite a nova senha do aluno:");
+              String novaSenha = scan.next();
+              aluno.setSenha(novaSenha);
+              usuarioRepository.salvarAlunos(alunos);
+              break;
+
+            case 4:
+              System.out.println("Digite a nova pergunta de segurança do aluno:");
+              String novaPergunta = scan.next();
+              aluno.setPergunta(novaPergunta);
+              usuarioRepository.salvarAlunos(alunos);
+              break;
+
+            case 5:
+              System.out.println("Digite a nova resposta de segurança do aluno:");
+              String novaResposta = scan.next();
+              aluno.setResposta(novaResposta);
+              usuarioRepository.salvarAlunos(alunos);
+              break;
+
+            default:
+              System.out.println("Opção inválida.");
+              break;
+          }
+        }
+        break;
+      }
+    }
+  }
+}
