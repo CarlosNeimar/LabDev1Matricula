@@ -82,9 +82,14 @@ public class Secretaria implements Serializable {
       Aluno[] aluno = new Aluno[0];
       System.out.println("Digite o número de vagas da disciplina:");
       int numvagas = scan.nextInt();
-      Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos, professor, aluno, numvagas);
+      System.out.println("Disciplina é obrigatória ?");
+      String tipo = scan.next();
+      boolean obrigatoria = tipo.equals("sim") ? true : false;
+      Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos, professor, aluno, numvagas, obrigatoria);
       disciplinas.add(Novadisciplina);
     }
     usuarioRepository.salvardispl(disciplinas);
   }
+
+  // public void 
 } 
