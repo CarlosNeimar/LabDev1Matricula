@@ -3,6 +3,8 @@ package back.sistema;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import back.universidade.Disciplina;
 import back.usuarios.*;
 
 public class UsuarioRepository {
@@ -77,5 +79,29 @@ public class UsuarioRepository {
       e.printStackTrace();
     }
     return secretarias;
+  }
+
+  private static final String DISPL = "disiplinas.txt";
+
+  // Salvar a lista de disiplinas em um arquivo
+  public void salvardispl(List<Disciplina> disciplinas) {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DISPL))) {
+      oos.writeObject(disciplinas);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  // Carregar a lista de disiplinas de um arquivo
+  public List<Disciplina> carregardispl() {
+    List<Disciplina> disiplinas = new ArrayList<>();
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DISPL))) {
+      disiplinas = (List<Disciplina>) ois.readObject();
+    } catch (FileNotFoundException e) {
+      // Arquivo não existe ainda, retornando lista vazia
+    } catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+    return disiplinas;
   }
 }

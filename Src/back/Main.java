@@ -52,6 +52,15 @@ public class Main {
       System.out.println("Secretaria: " + secretaria.getNome() + " Cod: " + secretaria.getCod()
           + " Senha: " + secretaria.getSenha());
     }
+    System.out.println("-----------------------------");
+    System.out.println("Disciplinas cadastradas");
+    List<Disciplina> disciplinas = usuarioRepository.carregardispl();
+    for (Disciplina disciplina : disciplinas) {
+      System.out.println("Entrou no for");
+      System.out.println("Disciplina: " + disciplina.getNome() + " Código: " + disciplina.getCodigo() + " Créditos: "
+          + disciplina.getNumCreditos() + " Professor: " + disciplina.getProfessor() + " Alunos: "
+          + disciplina.getListaAlunos());
+    }
   }
 
   // Método de entrada no sistema
@@ -104,7 +113,7 @@ public class Main {
           if (aluno.getNome().equals(nome) && aluno.getSenha().equals(senha)) {
             autenticado = true;
             System.out.println("Login realizado com sucesso! Bem-vindo, " + aluno.getNome());
-            alunosystem();
+            alunosystem(aluno);
             break;
           }
         }
@@ -115,7 +124,7 @@ public class Main {
           if (professor.getNome().equals(nome) && professor.getSenha().equals(senha)) {
             autenticado = true;
             System.out.println("Login realizado com sucesso! Bem-vindo, " + professor.getNome());
-            professoresystem();
+            professoresystem(professor);
             break;
           }
         }
@@ -126,7 +135,7 @@ public class Main {
           if (secretaria.getNome().equals(nome) && secretaria.getSenha().equals(senha)) {
             autenticado = true;
             System.out.println("Login realizado com sucesso! Bem-vindo, " + secretaria.getNome());
-            secretariasystem();
+            secretariasystem(secretaria);
             break;
           }
         }
@@ -292,20 +301,20 @@ public class Main {
   }
 
   // métodos para cada tipo de usuário
-  private static void secretariasystem() {
-    System.out.println("----Tela da secretaria----");
+  private static void secretariasystem(Secretaria secretaria) {
+    System.out.println("----Tela da secretaria " + secretaria.getNome() + "----");
     System.out.println("Menu de opções:");
-    System.out.println("1 - Cadastrar curso");
-    System.out.println("2 - Atualizar curso");
-    System.out.println("3 - Gerenciar priodos");
-    System.out.println("4 - Gerenciar disciplinas");
-    System.out.println("5 - Gerenciar professores");
+    System.out.println("1 - Gerar Curriculo");
+    System.out.println("2 - Consultar alunos");
+    System.out.println("3 - Remover alunos");
+    System.out.println("4 - Atualizar dado de aluno");
+    System.out.println("5 - Cadastrar Aluno");
     Scanner scan = new Scanner(System.in);
     int opcao = scan.nextInt();
     switch (opcao) {
       case 1:
-        
-        break;
+        secretaria.gerarCurriculo();
+      break;
 
       case 2:
 
@@ -328,13 +337,13 @@ public class Main {
     }
   }
 
-  private static void professoresystem() {
+  private static void professoresystem(Professor professor) {
     System.out.println("----Tela do professor----");
 
   }
 
-  private static void alunosystem() {
-    System.out.println("----Tela do professor----");
+  private static void alunosystem(Aluno aluno) {
+    System.out.println("----Tela do Aluno----");
 
   }
 

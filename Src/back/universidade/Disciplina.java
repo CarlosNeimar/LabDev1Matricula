@@ -1,9 +1,11 @@
 package back.universidade;
 
+import java.io.Serializable;
+
 import back.usuarios.Aluno;
 import back.usuarios.Professor;
 
-public class Disciplina {
+public class Disciplina implements Serializable{
   private String nome;
   private int codigo;
   private int numCreditos;

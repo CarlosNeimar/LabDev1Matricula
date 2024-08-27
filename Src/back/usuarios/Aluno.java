@@ -2,7 +2,6 @@ package back.usuarios;
 import java.io.Serializable;
 import java.util.Objects;
 
-import back.universidade.Universidade;
 import back.universidade.Disciplina;
 
 public class Aluno implements Serializable {

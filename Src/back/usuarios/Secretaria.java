@@ -1,10 +1,16 @@
 package back.usuarios;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Scanner;
 
+import back.sistema.UsuarioRepository;
 import back.universidade.Disciplina;
 
 public class Secretaria implements Serializable {
+
+    private static UsuarioRepository usuarioRepository = new UsuarioRepository();
+
   private String nome;
   private String senha;
   private int cod;
@@ -61,10 +67,24 @@ public class Secretaria implements Serializable {
   }
   // Métods
   public void gerarCurriculo(){
+    System.out.println("Quantas disciplinas deseja adicionar ao currículo?");
+    Scanner scan = new Scanner(System.in);
+    int numDisciplinas = scan.nextInt();
+    Disciplina[] listaDisciplinas = new Disciplina[numDisciplinas];
+    List<Disciplina> disciplinas = usuarioRepository.carregardispl();
+    for (int i = 0; i < numDisciplinas; i++) {
+      System.out.println("Digite o nome da disciplina:");
+      String nome = scan.next();
+      int codigo = disciplinas.size() + 1;
+      System.out.println("Digite o número de créditos da disciplina:");
+      int numCreditos = scan.nextInt();
+      Professor professor = new Professor();
+      Aluno[] aluno = new Aluno[0];
+      System.out.println("Digite o número de vagas da disciplina:");
+      int numvagas = scan.nextInt();
+      Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos, professor, aluno, numvagas);
+      disciplinas.add(Novadisciplina);
+    }
+    usuarioRepository.salvardispl(disciplinas);
   }
-
-  public void cadastrarcurso(String nome, int numcreditos, Disciplina[] listaDisciplinas){
-    
-  }
-
-}
+} 
