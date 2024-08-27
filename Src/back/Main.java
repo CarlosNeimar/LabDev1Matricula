@@ -56,10 +56,9 @@ public class Main {
     System.out.println("Disciplinas cadastradas");
     List<Disciplina> disciplinas = usuarioRepository.carregardispl();
     for (Disciplina disciplina : disciplinas) {
-      System.out.println("Entrou no for");
       System.out.println("Disciplina: " + disciplina.getNome() + " Código: " + disciplina.getCodigo() + " Créditos: "
           + disciplina.getNumCreditos() + " Professor: " + disciplina.getProfessor() + " Alunos: "
-          + disciplina.getListaAlunos());
+          + disciplina.getListaAlunos() + " Obrigatoria? " + disciplina.getobrigatoria());
     }
   }
 
@@ -314,7 +313,7 @@ public class Main {
     switch (opcao) {
       case 1:
         secretaria.gerarCurriculo();
-      break;
+        break;
 
       case 2:
 

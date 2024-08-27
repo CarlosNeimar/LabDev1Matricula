@@ -12,17 +12,19 @@ public class Disciplina implements Serializable{
   private Professor professor;
   private Aluno []listaAlunos;
   private int numvagas;
+  private boolean obrigatoria;
 
   // Construtor
   public Disciplina() {
   }
-  public Disciplina(String nome, int codigo, int numCreditos, Professor professor, Aluno[] listaAlunos, int numvagas) {
+  public Disciplina(String nome, int codigo, int numCreditos, Professor professor, Aluno[] listaAlunos, int numvagas, boolean obrigatoria) {
     this.nome = nome;
     this.codigo = codigo;
     this.numCreditos = numCreditos;
     this.professor = professor;
     this.listaAlunos = listaAlunos;
     this.numvagas = numvagas;
+    this.obrigatoria = obrigatoria;
   }
 
   // Getters e Setters
@@ -48,6 +50,14 @@ public class Disciplina implements Serializable{
 
   public void setNumCreditos(int numCreditos) {
     this.numCreditos = numCreditos;
+  }
+
+  public void setobrigatoria(boolean obrigatoria) {
+    this.obrigatoria = obrigatoria;
+  }
+
+  public boolean getobrigatoria() {
+    return this.obrigatoria;
   }
 
   public Professor getProfessor() {
