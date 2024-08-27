@@ -15,26 +15,31 @@ public class Main {
     System.out.println("Sistema de matrícula");
     System.out.println("1 - entrar");
     System.out.println("2 - ver usuarios (dev)");
-    System.out.println("3 - recuperar senha");
     Scanner scan = new Scanner(System.in);
     int opcao = scan.nextInt();
-    if (opcao == 2) {
-      Main main = new Main();
-      main.verusuarios();
-    } else if (opcao == 3) {
-      recuperarSenha(scan);
-    } else {
-      entrar();
+    switch (opcao) {
+      case 1:
+        entrar();
+        break;
+
+      case 2:
+        verusuarios();
+        break;
+
+      default:
+        System.out.println("Opção inválida");
+        main(null);
+        break;
     }
   }
 
   // Método para teste
-  public void verusuarios() {
+  public static void verusuarios() {
     System.out.println("TODOS OS USUARIOS CADASTRADOS");
     List<Aluno> alunos = usuarioRepository.carregarAlunos();
     for (Aluno aluno : alunos) {
       System.out.println("Aluno: " + aluno.getNome() + "\nMatricula: " + aluno.getMatricula()
-          + "\nSenha: " + aluno.getSenha() + "\nDisciplinas: " + aluno.getListaDisciplinas() + 
+          + "\nSenha: " + aluno.getSenha() + "\nDisciplinas: " + aluno.getListaDisciplinas() +
           "\nPergunta de segurança:" + aluno.getPergunta() + "\nResposta de segurança:" + aluno.getResposta());
     }
     List<Professor> professores = usuarioRepository.carregarProf();
@@ -49,6 +54,7 @@ public class Main {
     }
   }
 
+  // Método de entrada no sistema
   public static void entrar() {
     System.out.println("Sistema de matrícula");
     System.out.println("Bem-vindo ao sistema de matrícula da universidade");
@@ -75,6 +81,7 @@ public class Main {
     }
   }
 
+  // Metodos para login / cadastro / alterar senha
   public static void login(Scanner scan) {
     System.out.println("---Login---");
     System.out.println("Digite o tipo de usuário:");
@@ -97,6 +104,7 @@ public class Main {
           if (aluno.getNome().equals(nome) && aluno.getSenha().equals(senha)) {
             autenticado = true;
             System.out.println("Login realizado com sucesso! Bem-vindo, " + aluno.getNome());
+            alunosystem();
             break;
           }
         }
@@ -107,6 +115,7 @@ public class Main {
           if (professor.getNome().equals(nome) && professor.getSenha().equals(senha)) {
             autenticado = true;
             System.out.println("Login realizado com sucesso! Bem-vindo, " + professor.getNome());
+            professoresystem();
             break;
           }
         }
@@ -117,6 +126,7 @@ public class Main {
           if (secretaria.getNome().equals(nome) && secretaria.getSenha().equals(senha)) {
             autenticado = true;
             System.out.println("Login realizado com sucesso! Bem-vindo, " + secretaria.getNome());
+            secretariasystem();
             break;
           }
         }
@@ -280,4 +290,52 @@ public class Main {
         break;
     }
   }
+
+  // métodos para cada tipo de usuário
+  private static void secretariasystem() {
+    System.out.println("----Tela da secretaria----");
+    System.out.println("Menu de opções:");
+    System.out.println("1 - Cadastrar curso");
+    System.out.println("2 - Atualizar curso");
+    System.out.println("3 - Gerenciar priodos");
+    System.out.println("4 - Gerenciar disciplinas");
+    System.out.println("5 - Gerenciar professores");
+    Scanner scan = new Scanner(System.in);
+    int opcao = scan.nextInt();
+    switch (opcao) {
+      case 1:
+        
+        break;
+
+      case 2:
+
+        break;
+
+      case 3:
+
+        break;
+
+      case 4:
+
+        break;
+
+      case 5:
+
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  private static void professoresystem() {
+    System.out.println("----Tela do professor----");
+
+  }
+
+  private static void alunosystem() {
+    System.out.println("----Tela do professor----");
+
+  }
+
 }

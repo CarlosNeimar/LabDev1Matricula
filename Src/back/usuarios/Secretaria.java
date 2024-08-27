@@ -2,6 +2,8 @@ package back.usuarios;
 
 import java.io.Serializable;
 
+import back.universidade.Disciplina;
+
 public class Secretaria implements Serializable {
   private String nome;
   private String senha;
@@ -59,6 +61,10 @@ public class Secretaria implements Serializable {
   }
   // Métods
   public void gerarCurriculo(){
+  }
+
+  public void cadastrarcurso(String nome, int numcreditos, Disciplina[] listaDisciplinas){
+    
   }
 
 }
