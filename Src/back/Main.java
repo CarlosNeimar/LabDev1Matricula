@@ -316,7 +316,7 @@ public class Main {
         break;
 
       case 2:
-
+        secretaria.consultaralunos();
         break;
 
       case 3:

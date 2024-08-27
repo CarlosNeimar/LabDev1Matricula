@@ -9,7 +9,7 @@ import back.universidade.Disciplina;
 
 public class Secretaria implements Serializable {
 
-    private static UsuarioRepository usuarioRepository = new UsuarioRepository();
+  private static UsuarioRepository usuarioRepository = new UsuarioRepository();
 
   private String nome;
   private String senha;
@@ -91,5 +91,18 @@ public class Secretaria implements Serializable {
     usuarioRepository.salvardispl(disciplinas);
   }
 
-  // public void 
+  public void consultaralunos(){
+    System.out.println("Digite o nome do aluno:");
+    Scanner scan = new Scanner(System.in);
+    String nome = scan.next();
+    List<Aluno> alunos = usuarioRepository.carregarAlunos();
+    for (Aluno aluno : alunos) {
+      if (aluno.getNome().equals(nome)) {
+        System.out.println("Nome: " + aluno.getNome());
+        System.out.println("Matrícula: " + aluno.getMatricula());
+        System.out.println("Disciplinas: " + aluno.getListaDisciplinas());
+        break;
+      }
+    }
+  }
 } 
