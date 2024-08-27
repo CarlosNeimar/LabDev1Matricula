@@ -81,9 +81,9 @@ public class UsuarioRepository {
     return secretarias;
   }
 
-  private static final String DISPL = "disiplinas.txt";
+  private static final String DISPL = "disciplinas.txt";
 
-  // Salvar a lista de disiplinas em um arquivo
+  // Salvar a lista de disciplinas em um arquivo
   public void salvardispl(List<Disciplina> disciplinas) {
     try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(DISPL))) {
       oos.writeObject(disciplinas);
@@ -92,16 +92,16 @@ public class UsuarioRepository {
     }
   }
 
-  // Carregar a lista de disiplinas de um arquivo
+  // Carregar a lista de disciplinas de um arquivo
   public List<Disciplina> carregardispl() {
-    List<Disciplina> disiplinas = new ArrayList<>();
+    List<Disciplina> disciplinas = new ArrayList<>();
     try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(DISPL))) {
-      disiplinas = (List<Disciplina>) ois.readObject();
+      disciplinas = (List<Disciplina>) ois.readObject();
     } catch (FileNotFoundException e) {
       // Arquivo não existe ainda, retornando lista vazia
     } catch (IOException | ClassNotFoundException e) {
       e.printStackTrace();
     }
-    return disiplinas;
+    return disciplinas;
   }
 }
