@@ -344,6 +344,7 @@ public class Main {
   private static void alunosystem(Aluno aluno) {
     Scanner scan = new Scanner(System.in);
     boolean sair = false;
+    UsuarioRepository usuarioRepository = new UsuarioRepository(); // Instância para acessar o repositório
 
     while (!sair) {
         System.out.println("----Tela do Aluno----");
@@ -361,11 +362,35 @@ public class Main {
                 aluno.verDisciplinas();
                 break;
             case 2:
-                System.out.println("Digite o código da disciplina para matricular:");
-                int codigoMatricula = scan.nextInt();
-                scan.nextLine(); // Consumir quebra de linha
-                Disciplina disciplinaMatricula = recuperarDisciplinaPorCodigo(codigoMatricula);
-                aluno.matricularDisciplina(disciplinaMatricula);
+                List<Disciplina> disciplinasDisponiveis = usuarioRepository.carregardispl(); // Carregar disciplinas do repositório
+
+                if (disciplinasDisponiveis.isEmpty()) {
+                    System.out.println("Nenhuma disciplina disponível para matrícula.");
+                } else {
+                    System.out.println("Disciplinas disponíveis:");
+                    for (Disciplina disciplina : disciplinasDisponiveis) {
+                        System.out.println("Código: " + disciplina.getCodigo() + " - Nome: " + disciplina.getNome());
+                    }
+
+                    System.out.println("Digite o código da disciplina para matricular:");
+                    int codigoMatricula = scan.nextInt();
+                    scan.nextLine(); // Consumir quebra de linha
+
+                    Disciplina disciplinaMatricula = null;
+                    for (Disciplina disciplina : disciplinasDisponiveis) {
+                        if (disciplina.getCodigo() == codigoMatricula) {
+                            disciplinaMatricula = disciplina;
+                            break;
+                        }
+                    }
+
+                    if (disciplinaMatricula != null) {
+                        aluno.matricularDisciplina(disciplinaMatricula);
+                        System.out.println("Matrícula realizada com sucesso na disciplina: " + disciplinaMatricula.getNome());
+                    } else {
+                        System.out.println("Código da disciplina não encontrado.");
+                    }
+                }
                 break;
             case 3:
                 System.out.println("Digite o código da disciplina para cancelar a matrícula:");
@@ -383,6 +408,7 @@ public class Main {
         }
     }
 }
+
 
   private static Disciplina recuperarDisciplinaPorCodigo(int codigoMatricula) {
     // TODO Auto-generated method stub
