@@ -175,4 +175,36 @@ public class Secretaria implements Serializable {
       }
     }
   }
+
+  public void removeraluno() {
+    System.out.println("Digite o nome do aluno:");
+    Scanner scan = new Scanner(System.in);
+    String nome = scan.next();
+    List<Aluno> alunos = usuarioRepository.carregarAlunos();
+    for (Aluno aluno : alunos) {
+      if (aluno.getNome().equals(nome)) {
+        alunos.remove(aluno);
+        usuarioRepository.salvarAlunos(alunos);
+        System.out.println("Aluno removido com sucesso.");
+        break;
+      }
+    }
+  }
+
+  public void cadastraraluno() {
+    Scanner scan = new Scanner(System.in);
+    List<Aluno> alunos = usuarioRepository.carregarAlunos();
+    System.out.println("Digite o nome do aluno:");
+    String nome = scan.next();
+    int matricula = alunos.size() + 1; // Gerar matrícula sequencial
+    System.out.println("Digite a senha do aluno:");
+    String senha = scan.next();
+    System.out.println("Digite a pergunta de segurança do aluno:");
+    String pergunta = scan.next();
+    System.out.println("Digite a resposta de segurança do aluno:");
+    String resposta = scan.next();
+    Aluno novoAluno = new Aluno(nome, matricula, senha,new Disciplina[0], pergunta, resposta);
+    alunos.add(novoAluno);
+    usuarioRepository.salvarAlunos(alunos);
+  }
 }
