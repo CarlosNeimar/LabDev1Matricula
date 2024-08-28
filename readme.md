@@ -74,7 +74,8 @@ Como professor, eu quero ser notificado sobre quaisquer mudanças ou atualizaç�
 
 ## Diagramas
 
-![Caso de uso](Docs/Diagramas/Casodeuso/Casodeuso.jpg)
+![Captura de tela 2024-08-27 212236](https://github.com/user-attachments/assets/b475a560-8e38-4f84-86ee-eeef51113c93)
+
 
 Diagrama de classe: 
 ![Captura de tela 2024-08-22 111844](https://github.com/user-attachments/assets/f9e0bb16-97f6-472b-84aa-6642443295a4)
