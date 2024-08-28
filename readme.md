@@ -78,4 +78,4 @@ Como professor, eu quero ser notificado sobre quaisquer mudanças ou atualizaç�
 
 
 Diagrama de classe: 
-![Captura de tela 2024-08-22 111844](https://github.com/user-attachments/assets/f9e0bb16-97f6-472b-84aa-6642443295a4)
+![Captura de tela 2024-08-27 211119](https://github.com/user-attachments/assets/8df168e1-242a-40dd-8cc8-d457dfa0c58c)
