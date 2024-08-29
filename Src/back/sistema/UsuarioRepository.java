@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import back.universidade.Curso;
 import back.universidade.Disciplina;
 import back.usuarios.*;
 
@@ -103,5 +104,29 @@ public class UsuarioRepository {
       e.printStackTrace();
     }
     return disciplinas;
+  }
+
+  private static final String CURSOS = "cursos.txt";
+
+  // Salvar a lista de cursos em um arquivo
+  public void salvarCursos(List<Curso> cursos) {
+    try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(CURSOS))) {
+      oos.writeObject(cursos);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  // Carregar a lista de cursos de um arquivo
+  public List<Curso> carregarCursos() {
+    List<Curso> cursos = new ArrayList<>();
+    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(CURSOS))) {
+      cursos = (List<Curso>) ois.readObject();
+    } catch (FileNotFoundException e) {
+      // Arquivo não existe ainda, retornando lista vazia
+    } catch (IOException | ClassNotFoundException e) {
+      e.printStackTrace();
+    }
+    return cursos;
   }
 }

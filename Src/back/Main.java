@@ -40,7 +40,8 @@ public class Main {
     for (Aluno aluno : alunos) {
       System.out.println("Aluno: " + aluno.getNome() + "\nMatricula: " + aluno.getMatricula()
           + "\nSenha: " + aluno.getSenha() + "\nDisciplinas: " + aluno.getListaDisciplinas() +
-          "\nPergunta de segurança:" + aluno.getPergunta() + "\nResposta de segurança:" + aluno.getResposta());
+          "\nPergunta de segurança:" + aluno.getPergunta() + "\nResposta de segurança:"
+           + aluno.getResposta());
       System.out.println("\n");
     }
     System.out.println("-----------------------------");
@@ -69,7 +70,8 @@ public class Main {
     System.out.println("Disciplinas cadastradas");
     List<Disciplina> disciplinas = usuarioRepository.carregardispl();
     for (Disciplina disciplina : disciplinas) {
-      System.out.println("Disciplina: " + disciplina.getNome() + "\nCódigo: " + disciplina.getCodigo() + "\nCréditos: "
+      System.out.println("Disciplina: " + disciplina.getNome() + "\nCódigo: " + 
+      disciplina.getCodigo() + "\nCréditos: "
           + disciplina.getNumCreditos() + "\nProfessor: " + disciplina.getProfessor() + "\nAlunos: "
           + disciplina.getListaAlunos() + "\nObrigatoria? " + disciplina.getobrigatoria());
       System.out.println("\n");
@@ -85,48 +87,53 @@ public class Main {
       main(null);
     }
   }
-  //Metodo para criar curso automaticamente
-  public static void criartudo(){
-    List<Aluno> alunos = usuarioRepository.carregarAlunos();
-        for (int i = 0; i < 10; i++) {
-          int matricula = alunos.size() + 1; // Gerar matrícula sequencial
-          Aluno novoAluno = new Aluno("Aluno" + i, matricula, "123", new Disciplina[0], "1+1", "2");
-          alunos.add(novoAluno);
-          System.out.println("Aluno cadastrado com sucesso! Número de matrícula: " + matricula);
-        }
-        usuarioRepository.salvarAlunos(alunos);
-        List<Professor> professores = usuarioRepository.carregarProf();
-        for (int i = 0; i < 10; i++) {
-          int registro = professores.size() + 1; // Gerar registro sequencial
-          Professor novoProfessor = new Professor("Professor" + i, registro, "123", new Disciplina[0], "1+1", "2");
-          professores.add(novoProfessor);
-          System.out.println("Professor cadastrado com sucesso! Número de registro: " + registro);
-        }
-        usuarioRepository.salvarProf(professores);
-        List<Secretaria> secretarias = usuarioRepository.carregarSecr();
-        for (int i = 0; i < 10; i++) {
-          int cod = secretarias.size() + 1; // Gerar código sequencial
-          Secretaria novaSecretaria = new Secretaria("Secretaria" + i, cod, "123", "1+1", "2");
-          secretarias.add(novaSecretaria);
-          System.out.println("Secretária cadastrada com sucesso! Código: " + cod);
-        }
-        usuarioRepository.salvarSecr(secretarias);
-        List<Disciplina> disciplinas = usuarioRepository.carregardispl();
-        for (int i = 0; i < 10; i++) {
-          String nome = "Disciplina" + i;
-          int codigo = disciplinas.size() + 1;
-          int numCreditos = i + 1;
-          Professor professor = new Professor();
-          Aluno[] aluno = new Aluno[0];
-          int numvagas = 50;
-          boolean obrigatoria = true;
-          Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos, professor, aluno, numvagas, obrigatoria);
-          disciplinas.add(Novadisciplina);
-        }
-        usuarioRepository.salvardispl(disciplinas);
-        main(null);
-  }
 
+  // Metodo para criar curso automaticamente
+  public static void criartudo() {
+    List<Aluno> alunos = usuarioRepository.carregarAlunos();
+    for (int i = 0; i < 10; i++) {
+      int matricula = alunos.size() + 1; // Gerar matrícula sequencial
+      Aluno novoAluno = new Aluno("Aluno" + i, matricula, "123", new Disciplina[0],
+       "1+1", "2");
+      alunos.add(novoAluno);
+      System.out.println("Aluno cadastrado com sucesso! Número de matrícula: " + matricula);
+    }
+    usuarioRepository.salvarAlunos(alunos);
+    List<Professor> professores = usuarioRepository.carregarProf();
+    for (int i = 0; i < 10; i++) {
+      int registro = professores.size() + 1; // Gerar registro sequencial
+      Professor novoProfessor = new Professor("Professor" + i, registro, "123",
+       new Disciplina[0], "1+1", "2");
+      professores.add(novoProfessor);
+      System.out.println("Professor cadastrado com sucesso! Número de registro: " + registro);
+    }
+    usuarioRepository.salvarProf(professores);
+    List<Secretaria> secretarias = usuarioRepository.carregarSecr();
+    for (int i = 0; i < 10; i++) {
+      int cod = secretarias.size() + 1; // Gerar código sequencial
+      Secretaria novaSecretaria = new Secretaria("Secretaria" + i, cod,
+       "123", "1+1", "2");
+      secretarias.add(novaSecretaria);
+      System.out.println("Secretária cadastrada com sucesso! Código: " + cod);
+    }
+    usuarioRepository.salvarSecr(secretarias);
+    List<Disciplina> disciplinas = usuarioRepository.carregardispl();
+    for (int i = 0; i < 10; i++) {
+      String nome = "Disciplina" + i;
+      int codigo = disciplinas.size() + 1;
+      int numCreditos = i + 1;
+      Professor professor = new Professor();
+      Aluno[] aluno = new Aluno[0];
+      int numvagas = 50;
+      boolean obrigatoria = true;
+      int periodo = i;
+      Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos,
+       professor, aluno, numvagas, obrigatoria, periodo);
+      disciplinas.add(Novadisciplina);
+    }
+    usuarioRepository.salvardispl(disciplinas);
+    main(null);
+  }
 
   // Método de entrada no sistema
   public static void entrar() {
@@ -232,7 +239,8 @@ public class Main {
     cadastrodeusuario(tipo, nome, senha, pergunta, resposta);
   }
 
-  public static void cadastrodeusuario(int tipo, String nome, String senha, String pergunta, String resposta) {
+  public static void cadastrodeusuario(int tipo, String nome, String senha,
+   String pergunta, String resposta) {
     switch (tipo) {
       case 1:
         List<Aluno> alunos = usuarioRepository.carregarAlunos();
@@ -245,7 +253,8 @@ public class Main {
       case 2:
         List<Professor> professores = usuarioRepository.carregarProf();
         int registro = professores.size() + 1; // Gerar registro sequencial
-        Professor novoProfessor = new Professor(nome, registro, senha, new Disciplina[0], pergunta, resposta);
+        Professor novoProfessor = new Professor(nome, registro, senha, new Disciplina[0],
+         pergunta, resposta);
         professores.add(novoProfessor);
         usuarioRepository.salvarProf(professores);
         System.out.println("Professor cadastrado com sucesso! Número de registro: " + registro);
@@ -374,7 +383,8 @@ public class Main {
     System.out.println("3 - Remover alunos");
     System.out.println("4 - Atualizar dado de aluno");
     System.out.println("5 - Cadastrar Aluno");
-    System.out.println("6 - Cadastrar Aluno");
+    System.out.println("6 - Cadastrar Professor");
+    System.out.println("7 - Cadastrar Curso");
     Scanner scan = new Scanner(System.in);
     int opcao = scan.nextInt();
     switch (opcao) {
@@ -397,7 +407,12 @@ public class Main {
       case 5:
         secretaria.cadastraraluno();
         break;
-
+      case 6:
+        secretaria.cadastrarprof();
+        break;
+      case 7:
+        secretaria.cadastrarcurso();
+        break;
       default:
         break;
     }
@@ -436,7 +451,8 @@ public class Main {
           } else {
             System.out.println("Disciplinas disponíveis:");
             for (Disciplina disciplina : disciplinasDisponiveis) {
-              System.out.println("Código: " + disciplina.getCodigo() + " - Nome: " + disciplina.getNome());
+              System.out.println("- Nome: " + disciplina.getNome() + "\nCódigo: "
+               + disciplina.getCodigo() + "\nPeriodo: " + disciplina.getPeriodo());
             }
 
             System.out.println("Digite o código da disciplina para matricular:");
@@ -465,7 +481,8 @@ public class Main {
               }
               usuarioRepository.salvarAlunos(alunos);
 
-              System.out.println("Matrícula realizada com sucesso na disciplina: " + disciplinaMatricula.getNome());
+              System.out.println("Matrícula realizada com sucesso na disciplina: "
+               + disciplinaMatricula.getNome());
             } else {
               System.out.println("Código da disciplina não encontrado.");
             }
@@ -499,11 +516,4 @@ public class Main {
       }
     }
   }
-
-  // private static Disciplina recuperarDisciplinaPorCodigo(int codigoMatricula) {
-  // // TODO Auto-generated method stub
-  // throw new UnsupportedOperationException("Unimplemented method
-  // 'recuperarDisciplinaPorCodigo'");
-  // }
-
 }

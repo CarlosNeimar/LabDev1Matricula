@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import back.sistema.UsuarioRepository;
+import back.universidade.Curso;
 import back.universidade.Disciplina;
 
 public class Secretaria implements Serializable {
@@ -87,7 +88,9 @@ public class Secretaria implements Serializable {
       System.out.println("Disciplina é obrigatória ?");
       String tipo = scan.next();
       boolean obrigatoria = tipo.equals("sim") ? true : false;
-      Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos, professor, aluno, numvagas, obrigatoria);
+      System.out.println("Digite o periodo da disciplina:");
+      int periodo = scan.nextInt();
+      Disciplina Novadisciplina = new Disciplina(nome, codigo, numCreditos, professor, aluno, numvagas, obrigatoria, periodo);
       disciplinas.add(Novadisciplina);
     }
     usuarioRepository.salvardispl(disciplinas);
@@ -206,5 +209,37 @@ public class Secretaria implements Serializable {
     Aluno novoAluno = new Aluno(nome, matricula, senha,new Disciplina[0], pergunta, resposta);
     alunos.add(novoAluno);
     usuarioRepository.salvarAlunos(alunos);
+  }
+
+  public void cadastrarprof() {
+    Scanner scan = new Scanner(System.in);
+    List<Professor> professores = usuarioRepository.carregarProf();
+    System.out.println("Digite o nome do professor:");
+    String nome = scan.next();
+    int matricula = professores.size() + 1; // Gerar matrícula sequencial
+    System.out.println("Digite a senha do professor:");
+    String senha = scan.next();
+    System.out.println("Digite a pergunta de segurança do professor:");
+    String pergunta = scan.next();
+    System.out.println("Digite a resposta de segurança do professor:");
+    String resposta = scan.next();
+    Professor novoProfessor = new Professor(nome, matricula, senha,new Disciplina[0], pergunta, resposta);
+    professores.add(novoProfessor);
+    usuarioRepository.salvarProf(professores);
+  }
+
+  public void cadastrarcurso() {
+    Scanner scan = new Scanner(System.in);
+    List<Curso> cursos = usuarioRepository.carregarCursos();
+    System.out.println("Digite o nome do curso:");
+    String nome = scan.next();
+    int codigo = cursos.size() + 1; // Gerar código sequencial
+    System.out.println("Digite o número de créditos do curso:");
+    int numCreditos = scan.nextInt();
+    System.out.println("Digite o preço do curso:");
+    int preco = scan.nextInt();
+    Curso novoCurso = new Curso(nome, codigo, numCreditos, new Disciplina[0], preco);
+    cursos.add(novoCurso);
+    usuarioRepository.salvarCursos(cursos);
   }
 }
