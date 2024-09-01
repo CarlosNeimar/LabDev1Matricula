@@ -3,10 +3,15 @@ package back.usuarios;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.List;
 
+import back.sistema.UsuarioRepository;
 import back.universidade.Disciplina;
 
 public class Aluno implements Serializable {
+
+      private static UsuarioRepository usuarioRepository = new UsuarioRepository();
+
     private String nome;
     private int matricula;
     private String senha;
@@ -107,7 +112,7 @@ public class Aluno implements Serializable {
     }
 
     // Método para matricular o aluno em uma disciplina
-    public void matricularDisciplina(Disciplina disciplina) {
+    public void matricularDisciplina(Disciplina disciplina, int matricula) {
         if (disciplina == null) {
             System.out.println("Disciplina não encontrada.");
             return;
@@ -119,6 +124,17 @@ public class Aluno implements Serializable {
                 return;
             }
         }
+
+        List<Aluno> alunos = usuarioRepository.carregarAlunos();
+        
+        for (Aluno aluno : alunos) {
+            if (Integer.valueOf(aluno.getMatricula()).equals(matricula)) {
+              aluno.setListaDisciplinas(listaDisciplinas);
+              usuarioRepository.salvarAlunos(alunos);
+              break;
+            }
+          }
+
 
         // Adicionar a nova disciplina
         Disciplina[] novasDisciplinas = Arrays.copyOf(listaDisciplinas, listaDisciplinas.length + 1);

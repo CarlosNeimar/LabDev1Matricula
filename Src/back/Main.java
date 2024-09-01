@@ -367,7 +367,7 @@ public class Main {
           if (secretaria.getNome().equals(nome)) {
             secretaria.setSenha(novaSenha);
             usuarioRepository.salvarSecr(secretarias);
-            break;
+            break; 
           }
         }
         break;
@@ -469,7 +469,8 @@ public class Main {
 
             if (disciplinaMatricula != null) {
               // Adicionar disciplina à lista de disciplinas do aluno
-              aluno.matricularDisciplina(disciplinaMatricula);
+              int matricula = aluno.getMatricula();
+              aluno.matricularDisciplina(disciplinaMatricula, matricula);
 
               // Atualizar o aluno no repositório
               List<Aluno> alunos = usuarioRepository.carregarAlunos();
