@@ -12,9 +12,16 @@ public class Main {
   private static UsuarioRepository usuarioRepository = new UsuarioRepository();
 
   public static void main(String[] args) {
-    System.out.println("Sistema de matrícula");
-    System.out.println("1 - entrar");
-    System.out.println("2 - ver usuarios (dev)");
+    System.out.println("");
+    System.out.println("======================");
+    System.out.println(" Sistema de matrícula ");
+    System.out.println("======================");
+    System.out.println("");
+    System.out.println("** Opções: **");
+    System.out.println("[1] Entrar");
+    System.out.println("[2] Ver usuarios (dev)");
+    System.out.println("");
+    System.out.println("Digite uma opção:");
     Scanner scan = new Scanner(System.in);
     int opcao = scan.nextInt();
     switch (opcao) {
@@ -27,7 +34,8 @@ public class Main {
         break;
 
       default:
-        System.out.println("Opção inválida");
+        System.out.println("");
+        System.out.println("== Opção inválida! ==");
         main(null);
         break;
     }
@@ -35,7 +43,9 @@ public class Main {
 
   // Método para teste
   public static void verusuarios() {
-    System.out.println("TODOS OS USUARIOS CADASTRADOS");
+    System.out.println("====================");
+    System.out.println("Usuários cadastrados");
+    System.out.println("====================");
     List<Aluno> alunos = usuarioRepository.carregarAlunos();
     for (Aluno aluno : alunos) {
       System.out.println("Aluno: " + aluno.getNome() + "\nMatricula: " + aluno.getMatricula()
@@ -137,11 +147,17 @@ public class Main {
 
   // Método de entrada no sistema
   public static void entrar() {
-    System.out.println("Sistema de matrícula");
-    System.out.println("Bem-vindo ao sistema de matrícula da universidade");
-    System.out.println("Digite 1 para login");
-    System.out.println("Digite 2 para cadastro");
-    System.out.println("Digite 3 para recuperar senha");
+    System.out.println("");
+    System.out.println("===================================================");
+    System.out.println(" Bem vindo ao sistema de matrícula da universidade ");
+    System.out.println("===================================================");
+    System.out.println("");
+    System.out.println("** Opções: **");
+    System.out.println("[1] Login");
+    System.out.println("[2] Cadastro");
+    System.out.println("[3] Recuperar senha");
+    System.out.println("");
+    System.out.println("Digite uma opção:");
     Scanner scan = new Scanner(System.in);
     int opcao = scan.nextInt();
     scan.nextLine(); // Consumir quebra de linha
@@ -164,13 +180,23 @@ public class Main {
 
   // Metodos para login / cadastro / alterar senha
   public static void login(Scanner scan) {
-    System.out.println("---Login---");
-    System.out.println("Digite o tipo de usuário:");
-    System.out.println("Digite 1 para aluno");
-    System.out.println("Digite 2 para professor");
-    System.out.println("Digite 3 para secretário");
+    System.out.println("");
+    System.out.println("=======");
+    System.out.println(" Login ");
+    System.out.println("=======");
+    System.out.println("");
+    System.out.println("Como voce deseja realizar o login?");
+    System.out.println("");
+    System.out.println("** Opções: **");
+    System.out.println("[1] Aluno");
+    System.out.println("[2] Professor");
+    System.out.println("[3] Secretário");
+    System.out.println("");
+    System.out.println("Digite uma opção:");
+
     int tipo = scan.nextInt();
     scan.nextLine(); // Consumir quebra de linha
+    System.out.println("");
     System.out.println("Digite o nome de usuário:");
     String nome = scan.nextLine();
     System.out.println("Digite a senha:");
@@ -184,6 +210,7 @@ public class Main {
         for (Aluno aluno : alunos) {
           if (aluno.getNome().equals(nome) && aluno.getSenha().equals(senha)) {
             autenticado = true;
+            System.out.println("");
             System.out.println("Login realizado com sucesso! Bem-vindo, " + aluno.getNome());
             alunosystem(aluno);
             break;
@@ -195,6 +222,7 @@ public class Main {
         for (Professor professor : professores) {
           if (professor.getNome().equals(nome) && professor.getSenha().equals(senha)) {
             autenticado = true;
+            System.out.println("");
             System.out.println("Login realizado com sucesso! Bem-vindo, " + professor.getNome());
             professoresystem(professor);
             break;
@@ -206,6 +234,7 @@ public class Main {
         for (Secretaria secretaria : secretarias) {
           if (secretaria.getNome().equals(nome) && secretaria.getSenha().equals(senha)) {
             autenticado = true;
+            System.out.println("");
             System.out.println("Login realizado com sucesso! Bem-vindo, " + secretaria.getNome());
             secretariasystem(secretaria);
             break;
@@ -215,19 +244,29 @@ public class Main {
     }
 
     if (!autenticado) {
+      System.out.println("");
       System.out.println("Nome de usuário ou senha incorretos. Tente novamente.");
       entrar();
     }
   }
 
   public static void cadastro(Scanner scan) {
-    System.out.println("---Cadastro---");
-    System.out.println("Digite o tipo de usuário:");
-    System.out.println("Digite 1 para aluno");
-    System.out.println("Digite 2 para professor");
-    System.out.println("Digite 3 para secretário");
+    System.out.println("");
+    System.out.println("==========");
+    System.out.println(" Cadastro ");
+    System.out.println("==========");
+    System.out.println("");
+    System.out.println("Qual o tipo de usuário");
+    System.out.println("");
+    System.out.println("** Opções: **");
+    System.out.println("[1] Aluno");
+    System.out.println("[2] Professor");
+    System.out.println("[3] Secretário");
+    System.out.println("");
+    System.out.println("Digite uma opção:");
     int tipo = scan.nextInt();
     scan.nextLine(); // Consumir quebra de linha
+    System.out.println("");
     System.out.println("Digite o nome de usuário:");
     String nome = scan.nextLine();
     System.out.println("Digite a senha:");
@@ -428,12 +467,19 @@ public class Main {
     boolean sair = false;
 
     while (!sair) {
-      System.out.println("----Tela do Aluno----");
-      System.out.println("Menu de opções:");
-      System.out.println("1 - Ver Disciplinas");
-      System.out.println("2 - Matricular em Disciplina");
-      System.out.println("3 - Cancelar Matrícula em Disciplina");
-      System.out.println("4 - Sair");
+      System.out.println("");
+      System.out.println("===============");
+      System.out.println(" Tela do Aluno ");
+      System.out.println("===============");
+      System.out.println("");
+      System.out.println("** Opções: **");
+      System.out.println("");
+      System.out.println("[1] Ver Disciplinas");
+      System.out.println("[2] Matricular em Disciplina");
+      System.out.println("[3] Cancelar Matrícula em Disciplina");
+      System.out.println("[4] Sair");
+      System.out.println("");
+      System.out.println("Digite uma opção: ");
 
       int opcao = scan.nextInt();
       scan.nextLine(); // Consumir quebra de linha
@@ -447,14 +493,17 @@ public class Main {
                                                                                        // repositório
 
           if (disciplinasDisponiveis.isEmpty()) {
+            System.out.println();
             System.out.println("Nenhuma disciplina disponível para matrícula.");
           } else {
+            System.out.println();
             System.out.println("Disciplinas disponíveis:");
             for (Disciplina disciplina : disciplinasDisponiveis) {
               System.out.println("- Nome: " + disciplina.getNome() + "\nCódigo: "
                + disciplina.getCodigo() + "\nPeriodo: " + disciplina.getPeriodo());
             }
 
+            System.out.println();
             System.out.println("Digite o código da disciplina para matricular:");
             int codigoMatricula = scan.nextInt();
             scan.nextLine(); // Consumir quebra de linha
