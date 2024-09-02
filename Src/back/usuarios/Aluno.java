@@ -75,6 +75,16 @@ public class Aluno implements Serializable {
         return this.listaDisciplinas;
     }
 
+    public void getnomeListaDisciplinasCodigos(Aluno aluno) {
+        if (listaDisciplinas.length == 0) {
+            System.out.println("Você não está matriculado em nenhuma disciplina.");
+        } else {
+        for (Disciplina disciplina : aluno.getListaDisciplinas()) {
+            System.out.println("Código: " + disciplina.getCodigo() + " Nome: " + disciplina.getNome());
+          }
+        }
+    }
+
     public void setListaDisciplinas(Disciplina[] listaDisciplinas) {
         this.listaDisciplinas = listaDisciplinas;
     }
@@ -107,6 +117,15 @@ public class Aluno implements Serializable {
             System.out.println("Disciplinas em que você está matriculado:");
             for (Disciplina disciplina : listaDisciplinas) {
                 System.out.println("Código: " + disciplina.getCodigo() + " Nome: " + disciplina.getNome());
+            }
+        }
+    }
+
+    public void verificarcadastroespecifico(int cod) {
+        for (Disciplina disciplina : listaDisciplinas) {
+            if (disciplina.getCodigo() == cod) {
+                System.out.println("Nome: " + disciplina.getNome()+ " Matricula: " + disciplina.getCodigo());
+                return;
             }
         }
     }
@@ -168,5 +187,20 @@ public class Aluno implements Serializable {
         }
         setListaDisciplinas(novasDisciplinas);
         System.out.println("Matrícula cancelada com sucesso na disciplina com código " + codigoDisciplina);
+    }
+
+    public void verMensalidade() {
+        int valor = 0;
+        if (listaDisciplinas.length == 0) {
+            System.out.println("Sua mensalidade é de R$ 0,00.");
+            System.out.println("Você não está matriculado em nenhuma disciplina.");
+        } else {
+            System.out.println("Disciplinas em que você está matriculado:");
+            for (Disciplina disciplina : listaDisciplinas) {
+                valor += 500;
+                System.out.println("Código: " + disciplina.getCodigo() + " Nome: " + disciplina.getNome());
+            }
+            System.out.println("Sua mensalidade é de R$ " + valor + ",00.");
+        }
     }
 }

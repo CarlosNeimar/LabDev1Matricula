@@ -1,10 +1,17 @@
 package back.usuarios;
-import java.io.Serializable;
-import java.util.Objects;
 
+import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
+import java.util.Scanner;
+
+import back.sistema.UsuarioRepository;
 import back.universidade.Disciplina;
 
 public class Professor implements Serializable {
+
+  private static UsuarioRepository usuarioRepository = new UsuarioRepository();
+
   private String nome;
   private int registro;
   private String senha;
@@ -15,7 +22,8 @@ public class Professor implements Serializable {
   public Professor() {
   }
 
-  public Professor(String nome, int registro, String senha, Disciplina[] listadisciplina, String pergunta, String resposta) {
+  public Professor(String nome, int registro, String senha, Disciplina[] listadisciplina, String pergunta,
+      String resposta) {
     this.nome = nome;
     this.registro = registro;
     this.senha = senha;
@@ -92,11 +100,49 @@ public class Professor implements Serializable {
     return this;
   }
 
- public void acessarlistaaluno(){
+  public void acessarlistaaluno() {
 
- }
+  }
 
- public void acessarsistema(){
-  
- }
+  public void acessarsistema() {
+
+  }
+
+  public void verDisciplinas(Professor professor) {
+    if (listadisciplina == null) {
+      System.out.println("Voce não tem disciplinas cadastradas");
+    } else {
+      for (Disciplina disciplina : professor.getListadisciplina()) {
+        System.out.println("Código: " + disciplina.getCodigo() + " Nome: " + disciplina.getNome());
+      }
+    }
+  }
+
+  public void verAlunos(Professor professor) {
+    Scanner scan = new Scanner(System.in);
+    if (listadisciplina == null) {
+      System.out.println("Voce não tem disciplinas cadastradas");
+    } else {
+      for (Disciplina disciplina : professor.getListadisciplina()) {
+        System.out.println("Código: " + disciplina.getCodigo() + " Nome: " + disciplina.getNome());
+      }
+    }
+    System.out.println("Escolha o codigo da disciplina que deseja ver os alunos:");
+    int cod = scan.nextInt();
+    List<Aluno> alunos = usuarioRepository.carregarAlunos();
+    for (Aluno aluno : alunos) {
+      for (Disciplina disciplina : aluno.getListaDisciplinas()) {
+        if (cod == disciplina.getCodigo()) {
+          System.out.println("Nome: " + aluno.getNome() + " Matricula: " + aluno.getMatricula());
+        }
+      }
+    }
+    // for (Disciplina disciplina : professor.getListadisciplina()) {
+    //   if (cod == disciplina.getCodigo()) {
+    //     for (Aluno aluno : disciplina.getListaAlunos()) {
+    //       System.out.println("Nome: " + aluno.getNome() + " Matricula: " + aluno.getMatricula());
+    //     }
+    //   }
+    // }
+  }
 }

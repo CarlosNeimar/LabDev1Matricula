@@ -20,7 +20,7 @@ public class UsuarioRepository {
       e.printStackTrace();
     }
   }
-
+ 
   // Carrega a lista de alunos de um arquivo
   public List<Aluno> carregarAlunos() {
     List<Aluno> alunos = new ArrayList<>();

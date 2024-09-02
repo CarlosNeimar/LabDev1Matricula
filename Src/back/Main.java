@@ -49,8 +49,9 @@ public class Main {
     List<Aluno> alunos = usuarioRepository.carregarAlunos();
     for (Aluno aluno : alunos) {
       System.out.println("Aluno: " + aluno.getNome() + "\nMatricula: " + aluno.getMatricula()
-          + "\nSenha: " + aluno.getSenha() + "\nDisciplinas: " + aluno.getListaDisciplinas() +
-          "\nPergunta de segurança:" + aluno.getPergunta() + "\nResposta de segurança:"
+          + "\nSenha: " + aluno.getSenha() + "\nDisciplinas: ");
+          aluno.getnomeListaDisciplinasCodigos(aluno);
+          System.out.println("\nPergunta de segurança:" + aluno.getPergunta() + "\nResposta de segurança:"
            + aluno.getResposta());
       System.out.println("\n");
     }
@@ -60,8 +61,10 @@ public class Main {
     System.out.println("Professores:");
     List<Professor> professores = usuarioRepository.carregarProf();
     for (Professor professor : professores) {
+      Disciplina[] disciplinas = professor.getListadisciplina();
       System.out.println("Professor: " + professor.getNome() + "\nRegistro: " + professor.getRegistro()
-          + "\nSenha: " + professor.getSenha() + "\nDisciplinas: " + professor.getListadisciplina());
+          + "\nSenha: " + professor.getSenha() + "\nDisciplinas: " + /* professor.getListadisciplina() */
+          disciplinas);
       System.out.println("\n");
     }
     System.out.println("-----------------------------");
@@ -415,7 +418,9 @@ public class Main {
 
   // métodos para cada tipo de usuário
   private static void secretariasystem(Secretaria secretaria) {
+    System.out.println("=====================================================");
     System.out.println("----Tela da secretaria " + secretaria.getNome() + "----");
+    System.out.println("=====================================================");
     System.out.println("Menu de opções:");
     System.out.println("1 - Gerar Curriculo");
     System.out.println("2 - Consultar alunos");
@@ -424,6 +429,8 @@ public class Main {
     System.out.println("5 - Cadastrar Aluno");
     System.out.println("6 - Cadastrar Professor");
     System.out.println("7 - Cadastrar Curso");
+    System.out.println("8 - Atribuir Professor a Disciplina");
+    System.out.println("Digite a opção desejada:");
     Scanner scan = new Scanner(System.in);
     int opcao = scan.nextInt();
     switch (opcao) {
@@ -452,6 +459,9 @@ public class Main {
       case 7:
         secretaria.cadastrarcurso();
         break;
+      case 8:
+        secretaria.atribuirprof();
+        break;
       default:
         break;
     }
@@ -459,7 +469,29 @@ public class Main {
 
   private static void professoresystem(Professor professor) {
     System.out.println("----Tela do professor----");
+    System.out.println("Menu de opções:");
+    System.out.println("1 - Ver Disciplinas");
+    System.out.println("2 - Ver alunos de disciplina");
+    System.out.println("3 - Sair");
+    System.out.println("Digite a opção desejada:");
+    Scanner scan = new Scanner(System.in);
+    int opcao = scan.nextInt();
+    switch (opcao) {
+      case 1:
+        professor.verDisciplinas(professor);
+        break;
 
+      case 2:
+        professor.verAlunos(professor);
+        break;
+
+      case 3:
+        System.out.println("Saindo do sistema...");
+        break;
+
+      default:
+        break;
+    }
   }
 
   private static void alunosystem(Aluno aluno) {
@@ -477,7 +509,8 @@ public class Main {
       System.out.println("[1] Ver Disciplinas");
       System.out.println("[2] Matricular em Disciplina");
       System.out.println("[3] Cancelar Matrícula em Disciplina");
-      System.out.println("[4] Sair");
+      System.out.println("[4] Ver mensalidade");
+      System.out.println("[5] Sair");
       System.out.println("");
       System.out.println("Digite uma opção: ");
 
@@ -557,6 +590,9 @@ public class Main {
           System.out.println("Matrícula cancelada com sucesso.");
           break;
         case 4:
+          aluno.verMensalidade();
+          break;
+        case 5:
           sair = true;
           System.out.println("Saindo do sistema...");
           break;

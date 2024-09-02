@@ -1,6 +1,8 @@
 package back.usuarios;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -105,7 +107,11 @@ public class Secretaria implements Serializable {
       if (aluno.getNome().equals(nome)) {
         System.out.println("Nome: " + aluno.getNome());
         System.out.println("Matrícula: " + aluno.getMatricula());
-        System.out.println("Disciplinas: " + aluno.getListaDisciplinas());
+        System.out.println("Disciplinas: ");        
+        for (Disciplina disciplina : aluno.getListaDisciplinas()) {
+          System.out.println("Código: " + disciplina.getCodigo() + " Nome: " + disciplina.getNome());
+        
+      }
         break;
       }
     }
@@ -242,4 +248,61 @@ public class Secretaria implements Serializable {
     cursos.add(novoCurso);
     usuarioRepository.salvarCursos(cursos);
   }
+
+public void atribuirprof() {
+    Scanner scan = new Scanner(System.in);
+    List<Disciplina> disciplinas = usuarioRepository.carregardispl();
+    List<Professor> professores = usuarioRepository.carregarProf();
+    
+    // Solicita o nome da disciplina
+    System.out.println("Digite o nome da disciplina:");
+    String nomeDisciplina = scan.next();
+    Disciplina disciplina = null;
+    
+    // Busca a disciplina pelo nome
+    for (Disciplina d : disciplinas) {
+        if (d.getNome().equals(nomeDisciplina)) {
+            disciplina = d;
+            break;
+        }
+    }
+    
+    if (disciplina == null) {
+        System.out.println("Disciplina não encontrada.");
+        return;
+    }
+    
+    // Solicita o nome do professor
+    System.out.println("Digite o nome do professor:");
+    String nomeProfessor = scan.next();
+    Professor professor = null;
+    
+    // Busca o professor pelo nome
+    for (Professor p : professores) {
+        if (p.getNome().equals(nomeProfessor)) {
+            professor = p;
+            break;
+        }
+    }
+    
+    if (professor == null) {
+        System.out.println("Professor não encontrado.");
+        return;
+    }
+    
+    // Atribui o professor à disciplina
+    disciplina.setProfessor(professor);
+    
+    // Atualiza a lista de disciplinas que o professor está ministrando
+    List<Disciplina> disciplinasProfessor = new ArrayList<>(Arrays.asList(professor.getListadisciplina()));
+    disciplinasProfessor.add(disciplina);
+    professor.setListadisciplina(disciplinasProfessor.toArray(new Disciplina[0]));
+    
+    // Salva as alterações no repositório
+    usuarioRepository.salvardispl(disciplinas);
+    usuarioRepository.salvarProf(professores);
+    
+    System.out.println("Professor atribuído à disciplina com sucesso.");
+}
+
 }
