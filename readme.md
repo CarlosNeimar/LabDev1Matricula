@@ -21,9 +21,7 @@ Todos os usuários do sistema têm senhas que são utilizadas para validação d
 
 ## Tecnologias Utilizadas
 - **Backend:** Java.
-- **Frontend:** .....
-- **Banco de Dados:** MySQL.
-- **Autenticação:** .....
+- **Banco de Dados:** Arquivo Serrilhado.
 
 ## Historias de Usuarios
 
